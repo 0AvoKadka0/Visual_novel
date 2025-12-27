@@ -8,8 +8,8 @@
 
 body {
     font-family: 'Segoe UI', 'Roboto', sans-serif;
-    background: #000;
-    color: #fff;
+    background: #0f0f0f;
+    color: #d0d0d0;
     overflow: hidden;
     height: 100vh;
     width: 100vw;
@@ -35,17 +35,17 @@ body {
 
 /* ===== ЭКРАН ВОЗРАСТНОЙ ПРОВЕРКИ ===== */
 #age-check {
-    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2a 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #252020 100%);
 }
 
 .age-container {
     width: 95%;
     max-width: 600px;
-    background: rgba(15, 10, 25, 0.95);
+    background: rgba(30, 25, 25, 0.95);
     border-radius: 20px;
-    border: 2px solid #ff3366;
+    border: 2px solid #8b0000;
     padding: 30px;
-    box-shadow: 0 0 50px rgba(255, 51, 102, 0.3);
+    box-shadow: 0 0 50px rgba(80, 80, 80, 0.3);
     backdrop-filter: blur(10px);
 }
 
@@ -55,13 +55,13 @@ body {
 
 .age-warning i.fa-exclamation-triangle {
     font-size: 60px;
-    color: #ff3366;
+    color: #8b0000;
     margin-bottom: 20px;
     animation: pulse 2s infinite;
 }
 
 .age-warning h1 {
-    color: #ff3366;
+    color: #8b0000;
     font-size: 28px;
     margin-bottom: 25px;
     text-transform: uppercase;
@@ -96,7 +96,7 @@ body {
 }
 
 .warning-content li i {
-    color: #ff3366;
+    color: #8b0000;
     margin-right: 10px;
     width: 20px;
 }
@@ -106,11 +106,11 @@ body {
 }
 
 .age-requirement {
-    background: rgba(255, 51, 102, 0.1);
+    background: rgba(139, 0, 0, 0.1);
     border-radius: 10px;
     padding: 15px;
     margin: 20px 0;
-    border-left: 4px solid #ff3366;
+    border-left: 4px solid #8b0000;
 }
 
 .age-requirement p {
@@ -119,7 +119,7 @@ body {
 }
 
 .age-number {
-    color: #ff3366;
+    color: #8b0000;
     font-size: 24px;
     font-weight: bold;
 }
@@ -152,14 +152,15 @@ body {
 }
 
 .btn-yes {
-    background: linear-gradient(45deg, #ff3366, #ff6699);
+    background: linear-gradient(45deg, #404040, #505050);
     color: white;
+    border: 2px solid #8b0000;
 }
 
 .btn-yes:hover {
-    background: linear-gradient(45deg, #ff6699, #ff3366);
+    background: linear-gradient(45deg, #505050, #404040);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 51, 102, 0.4);
+    box-shadow: 0 10px 25px rgba(80, 80, 80, 0.4);
 }
 
 .btn-no {
@@ -183,7 +184,7 @@ body {
 
 /* ===== ГЛАВНОЕ МЕНЮ ===== */
 #main-menu {
-    background: #050510;
+    background: #121212;
 }
 
 .menu-background {
@@ -198,9 +199,9 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, 
-        rgba(5, 5, 15, 0.9) 0%,
-        rgba(15, 10, 30, 0.8) 50%,
-        rgba(25, 5, 45, 0.9) 100%);
+        rgba(18, 18, 18, 0.9) 0%,
+        rgba(28, 23, 23, 0.8) 50%,
+        rgba(38, 28, 28, 0.9) 100%);
     z-index: 1;
 }
 
@@ -222,7 +223,7 @@ body {
 .neon-1 {
     width: 300px;
     height: 300px;
-    background: #ff3366;
+    background: #505050;
     top: 10%;
     left: 10%;
     animation: float 15s infinite ease-in-out;
@@ -231,7 +232,7 @@ body {
 .neon-2 {
     width: 200px;
     height: 200px;
-    background: #3366ff;
+    background: #3a3a3a;
     bottom: 20%;
     right: 15%;
     animation: float 12s infinite ease-in-out reverse;
@@ -240,7 +241,7 @@ body {
 .neon-3 {
     width: 150px;
     height: 150px;
-    background: #33ff66;
+    background: #2a2a2a;
     top: 60%;
     left: 80%;
     animation: float 18s infinite ease-in-out;
@@ -275,11 +276,11 @@ body {
 
 .logo-text {
     font-size: clamp(40px, 8vw, 80px);
-    background: linear-gradient(45deg, #ff3366, #8a2be2);
+    background: linear-gradient(45deg, #d0d0d0, #a0a0a0);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 30px rgba(255, 51, 102, 0.3);
+    text-shadow: 0 0 30px rgba(80, 80, 80, 0.3);
     letter-spacing: 3px;
     line-height: 1.1;
     margin-bottom: 5px;
@@ -287,9 +288,9 @@ body {
 
 .logo-subtext {
     font-size: clamp(30px, 6vw, 60px);
-    color: #fff;
+    color: #b0b0b0;
     letter-spacing: 2px;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .logo-tag {
@@ -309,12 +310,12 @@ body {
 }
 
 .tag-warning {
-    background: rgba(255, 51, 102, 0.2);
-    color: #ff3366;
+    background: rgba(139, 0, 0, 0.15);
+    color: #8b0000;
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 14px;
-    border: 1px solid rgba(255, 51, 102, 0.5);
+    border: 1px solid rgba(139, 0, 0, 0.3);
 }
 
 /* Кнопки меню */
@@ -329,8 +330,8 @@ body {
 }
 
 .menu-btn {
-    background: rgba(30, 25, 45, 0.7);
-    border: 2px solid transparent;
+    background: rgba(45, 40, 40, 0.7);
+    border: 2px solid #404040;
     border-radius: 12px;
     padding: 20px;
     color: white;
@@ -354,16 +355,16 @@ body {
     height: 100%;
     background: linear-gradient(90deg, 
         transparent, 
-        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.05), 
         transparent);
     transition: left 0.7s ease;
 }
 
 .menu-btn:hover {
-    border-color: #ff3366;
-    background: rgba(40, 30, 60, 0.9);
+    border-color: #606060;
+    background: rgba(55, 45, 45, 0.9);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2);
+    box-shadow: 0 10px 30px rgba(80, 80, 80, 0.2);
 }
 
 .menu-btn:hover::before {
@@ -377,13 +378,13 @@ body {
 
 .menu-btn:disabled:hover {
     transform: none;
-    border-color: transparent;
-    background: rgba(30, 25, 45, 0.7);
+    border-color: #404040;
+    background: rgba(45, 40, 40, 0.7);
 }
 
 .btn-icon {
     font-size: 28px;
-    color: #ff3366;
+    color: #8b0000;
     margin-bottom: 10px;
 }
 
@@ -402,16 +403,16 @@ body {
 
 /* Стили для кнопки музыки в меню */
 .menu-btn.music-on .btn-icon {
-    color: #ff3366;
+    color: #707070;
     animation: pulse 2s infinite;
 }
 
 .menu-btn.music-off .btn-icon {
-    color: #666;
+    color: #505050;
 }
 
 .menu-btn.music-off:hover .btn-icon {
-    color: #ff3366;
+    color: #707070;
 }
 
 /* Нижняя панель */
@@ -494,9 +495,9 @@ body {
 }
 
 .btn-exit:hover {
-    background: rgba(255, 51, 102, 0.2);
-    color: #ff3366;
-    border-color: rgba(255, 51, 102, 0.5);
+    background: rgba(139, 0, 0, 0.15);
+    color: #8b0000;
+    border-color: rgba(139, 0, 0, 0.3);
 }
 
 /* Всплывающие окна */
@@ -506,7 +507,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(15, 15, 15, 0.8);
     display: none;
     justify-content: center;
     align-items: center;
@@ -518,9 +519,9 @@ body {
 }
 
 .popup-content {
-    background: rgba(20, 15, 35, 0.95);
+    background: rgba(35, 30, 30, 0.95);
     border-radius: 15px;
-    border: 2px solid #ff3366;
+    border: 2px solid #8b0000;
     width: 95%;
     max-width: 500px;
     overflow: hidden;
@@ -528,12 +529,12 @@ body {
 }
 
 .popup-header {
-    background: rgba(255, 51, 102, 0.1);
+    background: rgba(139, 0, 0, 0.1);
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 51, 102, 0.3);
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
 }
 
 .popup-header h3 {
@@ -574,13 +575,13 @@ body {
 }
 
 .now-playing {
-    background: rgba(255, 51, 102, 0.1);
+    background: rgba(60, 60, 60, 0.1);
     border-radius: 12px;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgba(255, 51, 102, 0.3);
+    border: 1px solid rgba(80, 80, 80, 0.3);
 }
 
 .track-info {
@@ -596,7 +597,7 @@ body {
 
 .track-mood {
     font-size: 14px;
-    color: #ff6699;
+    color: #a0a0a0;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -628,8 +629,8 @@ body {
 }
 
 .player-btn:hover {
-    background: rgba(255, 51, 102, 0.3);
-    border-color: #ff3366;
+    background: rgba(80, 80, 80, 0.3);
+    border-color: #606060;
     transform: scale(1.1);
 }
 
@@ -654,7 +655,7 @@ body {
 }
 
 .volume-icon {
-    color: #ff3366;
+    color: #8b0000;
     font-size: 20px;
 }
 
@@ -672,17 +673,17 @@ body {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #ff3366;
+    background: #8b0000;
     cursor: pointer;
     border: 2px solid #fff;
-    box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
 }
 
 .volume-slider::-moz-range-thumb {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #ff3366;
+    background: #8b0000;
     cursor: pointer;
     border: 2px solid #fff;
 }
@@ -736,8 +737,8 @@ body {
 }
 
 .track-item.active {
-    background: rgba(255, 51, 102, 0.15);
-    border-color: rgba(255, 51, 102, 0.4);
+    background: rgba(80, 80, 80, 0.15);
+    border-color: rgba(80, 80, 80, 0.4);
 }
 
 .track-item-name {
@@ -794,16 +795,16 @@ body {
 }
 
 .preset-btn:hover {
-    background: rgba(255, 51, 102, 0.2);
+    background: rgba(80, 80, 80, 0.2);
     color: #fff;
-    border-color: rgba(255, 51, 102, 0.4);
+    border-color: rgba(80, 80, 80, 0.4);
     transform: translateY(-2px);
 }
 
 .preset-btn.active {
-    background: rgba(255, 51, 102, 0.3);
+    background: rgba(80, 80, 80, 0.3);
     color: #fff;
-    border-color: #ff3366;
+    border-color: #606060;
 }
 
 /* ===== АНИМАЦИИ ===== */
@@ -985,12 +986,12 @@ body {
 }
 
 .menu-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 51, 102, 0.5);
+    background: rgba(80, 80, 80, 0.5);
     border-radius: 4px;
 }
 
 .menu-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 51, 102, 0.7);
+    background: rgba(80, 80, 80, 0.7);
 }
 
 /* Иконка загрузки музыки */
@@ -999,7 +1000,7 @@ body {
     width: 20px;
     height: 20px;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: #ff3366;
+    border-top-color: #8b0000;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-left: 10px;
@@ -1009,26 +1010,26 @@ body {
 
 /* Кнопка музыки в меню */
 .menu-btn.music-on {
-    border-color: #33ff66;
-    background: rgba(51, 255, 102, 0.1);
+    border-color: #606060;
+    background: rgba(96, 96, 96, 0.1);
 }
 
 .menu-btn.music-on .btn-icon {
-    color: #33ff66;
+    color: #707070;
     animation: pulse 2s infinite;
 }
 
 .menu-btn.music-off {
-    border-color: #666;
+    border-color: #404040;
     background: rgba(255, 255, 255, 0.05);
 }
 
 .menu-btn.music-off .btn-icon {
-    color: #666;
+    color: #505050;
 }
 
 .menu-btn.music-off:hover .btn-icon {
-    color: #ff3366;
+    color: #707070;
 }
 
 /* Анимация пульсации для иконки музыки */
@@ -1057,7 +1058,7 @@ body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #ff3366;
+    background: #8b0000;
     cursor: pointer;
     border: 2px solid #fff;
 }
@@ -1066,7 +1067,7 @@ body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #ff3366;
+    background: #8b0000;
     cursor: pointer;
     border: 2px solid #fff;
 }
@@ -1092,6 +1093,7 @@ body {
     #music-volume {
         width: 60px !important;
     }
+}
 
 /* ===== СТИЛИ ДЛЯ МУЗЫКАЛЬНОГО ПОПАПА ===== */
 
@@ -1107,10 +1109,10 @@ body {
 }
 
 .now-playing {
-    background: rgba(0, 30, 60, 0.3);
+    background: rgba(60, 60, 60, 0.3);
     border-radius: 12px;
     padding: 20px;
-    border: 1px solid rgba(100, 150, 255, 0.3);
+    border: 1px solid rgba(80, 80, 80, 0.3);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1129,7 +1131,7 @@ body {
 
 .track-status {
     font-size: 14px;
-    color: #33ff66;
+    color: #a0a0a0;
 }
 
 .player-controls {
@@ -1142,7 +1144,7 @@ body {
     height: 50px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(100, 150, 255, 0.3);
+    border: 2px solid rgba(80, 80, 80, 0.3);
     color: #fff;
     font-size: 18px;
     cursor: pointer;
@@ -1153,8 +1155,8 @@ body {
 }
 
 .player-btn:hover {
-    background: rgba(100, 150, 255, 0.3);
-    border-color: #6496ff;
+    background: rgba(80, 80, 80, 0.3);
+    border-color: #606060;
     transform: scale(1.1);
 }
 
@@ -1179,7 +1181,7 @@ body {
 }
 
 .volume-icon {
-    color: #6496ff;
+    color: #8b0000;
     font-size: 20px;
 }
 
@@ -1197,17 +1199,17 @@ body {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #6496ff;
+    background: #8b0000;
     cursor: pointer;
     border: 2px solid #fff;
-    box-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
 }
 
 .volume-slider::-moz-range-thumb {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #6496ff;
+    background: #8b0000;
     cursor: pointer;
     border: 2px solid #fff;
 }
@@ -1261,12 +1263,12 @@ body {
 
 .track-item:hover {
     background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(100, 150, 255, 0.2);
+    border-color: rgba(80, 80, 80, 0.2);
 }
 
 .track-item.active {
-    background: rgba(100, 150, 255, 0.15);
-    border-color: rgba(100, 150, 255, 0.4);
+    background: rgba(80, 80, 80, 0.15);
+    border-color: rgba(80, 80, 80, 0.4);
 }
 
 .track-item-info {
@@ -1276,7 +1278,7 @@ body {
 }
 
 .track-item-number {
-    color: #6496ff;
+    color: #8b0000;
     font-weight: bold;
     min-width: 25px;
 }
@@ -1335,36 +1337,36 @@ body {
 }
 
 .tracks-container::-webkit-scrollbar-thumb {
-    background: rgba(100, 150, 255, 0.5);
+    background: rgba(80, 80, 80, 0.5);
     border-radius: 3px;
 }
 
 .tracks-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(100, 150, 255, 0.7);
+    background: rgba(80, 80, 80, 0.7);
 }
 
 /* Стили для кнопки музыки в главном меню */
 .menu-btn.music-on {
-    border-color: #33ff66;
-    background: rgba(51, 255, 102, 0.1);
+    border-color: #606060;
+    background: rgba(96, 96, 96, 0.1);
 }
 
 .menu-btn.music-on .btn-icon {
-    color: #33ff66;
+    color: #707070;
     animation: pulse 2s infinite;
 }
 
 .menu-btn.music-off {
-    border-color: #666;
+    border-color: #404040;
     background: rgba(255, 255, 255, 0.05);
 }
 
 .menu-btn.music-off .btn-icon {
-    color: #666;
+    color: #505050;
 }
 
 .menu-btn.music-off:hover .btn-icon {
-    color: #6496ff;
+    color: #707070;
 }
 
 /* Анимация пульсации */
@@ -1399,6 +1401,7 @@ body {
     .tracks-container {
         max-height: 150px;
     }
+}
 
 /* Бейдж для первого трека */
 .first-track-badge {
@@ -1407,10 +1410,66 @@ body {
 
 @keyframes pulse-glow {
     0%, 100% { 
-        box-shadow: 0 0 5px rgba(51, 255, 102, 0.5);
+        box-shadow: 0 0 5px rgba(112, 112, 112, 0.5);
     }
     50% { 
-        box-shadow: 0 0 15px rgba(51, 255, 102, 0.8);
+        box-shadow: 0 0 15px rgba(112, 112, 112, 0.8);
     }
+}
 
+/* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ ПОПАПОВ ===== */
+
+/* Скрываем кнопки в информационных попапах */
+.popup-message .message-buttons {
+    display: none !important;
+}
+
+/* Центрируем текст в попапах без кнопок */
+.popup-message .message-content {
+    text-align: center;
+    padding: 30px 20px !important;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Делаем крестик более заметным */
+.popup-header .popup-close {
+    opacity: 1;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.popup-header .popup-close:hover {
+    color: #8b0000;
+    background: rgba(139, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+.popup-header .popup-close:active {
+    transform: scale(0.95);
+}
+
+/* Адаптивность для попапов без кнопок */
+@media (max-width: 768px) {
+    .popup-message .message-content {
+        padding: 20px 15px !important;
+        min-height: 100px;
+        font-size: 15px;
+    }
+    
+    .popup-header .popup-close {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
 }

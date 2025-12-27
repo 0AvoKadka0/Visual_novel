@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
+    <title>Тени Черноборска - Глава 1</title>
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Экран загрузки -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loader"></div>
+            <p class="loading-text">Загрузка Главы 1...</p>
+        </div>
+    </div>
+
+    <!-- Основной игровой экран -->
+    <div id="game-screen" class="game-screen">
+        <!-- Бэкграунд -->
+        <div id="scene-bg" class="scene-background"></div>
+        
+        <!-- Спрайты персонажей -->
+        <div id="sprites-container" class="sprites-container">
+            <!-- Спрайты добавляются динамически -->
+        </div>
+        
+        <!-- Интерфейс в стиле БЛ -->
+        <div class="ui-container">
+            <!-- Верхняя панель (опциональная) -->
+            <div class="top-panel">
+                <div class="game-title">ТЕНИ ЧЕРНОБОРСКА</div>
+                <div class="chapter-title">ГЛАВА 1: ЗНАК НА БЕРЕСТЕ</div>
+            </div>
+            
+            <!-- Окно текста -->
+            <div id="text-window" class="text-window">
+                <div id="character-name" class="character-name"></div>
+                <div id="dialog-text" class="dialog-text">
+                    <span id="text-content"></span>
+                    <span class="text-cursor">█</span>
+                </div>
+            </div>
+            
+            <!-- Нижняя панель с меню -->
+            <div class="bottom-panel">
+                <div class="menu-buttons">
+                    <button id="save-btn" class="menu-btn" title="Сохранить">
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <button id="load-btn" class="menu-btn" title="Загрузить">
+                        <i class="fas fa-folder-open"></i>
+                    </button>
+                    <button id="skip-btn" class="menu-btn" title="Пропуск">
+                        <i class="fas fa-forward"></i>
+                    </button>
+                    <button id="auto-btn" class="menu-btn" title="Авто">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button id="settings-btn" class="menu-btn" title="Настройки">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button id="menu-btn" class="menu-btn" title="Меню">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                
+                <!-- Индикаторы -->
+                <div class="indicators">
+                    <div class="time-indicator">
+                        <i class="far fa-clock"></i>
+                        <span id="time-display">ДЕНЬ</span>
+                    </div>
+                    <div class="location-indicator">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="location-display">ЧЕРНОБОРСК</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Окно выбора -->
+        <div id="choices-window" class="choices-window">
+            <div class="choices-title">ВЫБОР</div>
+            <div id="choices-container" class="choices-container">
+                <!-- Варианты выбора добавляются динамически -->
+            </div>
+        </div>
+        
+        <!-- Окно информации о сцене (появляется в начале) -->
+        <div id="scene-info-window" class="scene-info-window">
+            <div class="scene-title" id="scene-title"></div>
+            <div class="scene-description" id="scene-description"></div>
+        </div>
+    </div>
+    
+    <!-- Меню паузы -->
+    <div id="pause-menu" class="pause-menu">
+        <div class="pause-content">
+            <h2 class="pause-title">ПАУЗА</h2>
+            <div class="pause-buttons">
+                <button id="resume-btn" class="pause-btn">
+                    <i class="fas fa-play"></i> Продолжить
+                </button>
+                <button id="save-menu-btn" class="pause-btn">
+                    <i class="fas fa-save"></i> Сохранить игру
+                </button>
+                <button id="load-menu-btn" class="pause-btn">
+                    <i class="fas fa-folder-open"></i> Загрузить игру
+                </button>
+                <button id="settings-menu-btn" class="pause-btn">
+                    <i class="fas fa-cog"></i> Настройки
+                </button>
+                <button id="main-menu-btn" class="pause-btn">
+                    <i class="fas fa-home"></i> Главное меню
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Окно настроек -->
+    <div id="settings-menu" class="settings-menu">
+        <div class="settings-content">
+            <h2 class="settings-title">НАСТРОЙКИ</h2>
+            <div class="settings-sections">
+                <div class="settings-section">
+                    <h3><i class="fas fa-volume-up"></i> АУДИО</h3>
+                    <div class="setting-item">
+                        <label>Громкость музыки</label>
+                        <input type="range" id="music-volume" min="0" max="100" value="50">
+                    </div>
+                    <div class="setting-item">
+                        <label>Громкость звуков</label>
+                        <input type="range" id="sfx-volume" min="0" max="100" value="70">
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3><i class="fas fa-text-height"></i> ТЕКСТ</h3>
+                    <div class="setting-item">
+                        <label>Скорость текста</label>
+                        <input type="range" id="text-speed" min="1" max="10" value="5">
+                    </div>
+                    <div class="setting-item">
+                        <label>Автопереход</label>
+                        <select id="auto-speed">
+                            <option value="0">Выкл</option>
+                            <option value="3">Медленно</option>
+                            <option value="5">Нормально</option>
+                            <option value="8">Быстро</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-buttons">
+                <button id="settings-back" class="settings-btn">
+                    <i class="fas fa-arrow-left"></i> Назад
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Аудио элементы -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound">
+        <source src="assets/audio/click.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="text-sound">
+        <source src="assets/audio/text.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="scene-sound">
+        <source src="assets/audio/scene.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script src="js/game.js"></script>
+
+</body>
+</html>

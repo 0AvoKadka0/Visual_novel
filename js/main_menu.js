@@ -406,7 +406,7 @@ const MusicSystem = {
                 <div class="track-item-info">
                     <span class="track-item-number">${index + 1}.</span>
                     <span class="track-item-name">${track.name}</span>
-                    ${index === 0 ? '<span class="first-track-badge" style="margin-left: 10px; background: rgba(51, 255, 102, 0.2); color: #33ff66; padding: 2px 8px; border-radius: 10px; font-size: 11px;">Первый при запуске</span>' : ''}
+                    ${index === 0 ? '<span class="first-track-badge">Первый при запуске</span>' : ''}
                 </div>
                 <div class="track-item-mood">${track.mood}</div>
             `;
@@ -429,6 +429,74 @@ const MusicSystem = {
     }
 };
 
+// ==================== СИСТЕМА ПОПАПОВ ====================
+
+const PopupSystem = {
+    // Показать сообщение
+    showMessage(title, content, buttons = []) {
+        const popup = document.getElementById('message-popup');
+        const titleElement = document.getElementById('message-title');
+        const contentElement = document.getElementById('message-content');
+        const buttonsElement = document.getElementById('message-buttons');
+        
+        if (!popup || !titleElement || !contentElement || !buttonsElement) return;
+        
+        // Устанавливаем заголовок и содержимое
+        titleElement.textContent = title;
+        contentElement.innerHTML = content.replace(/\n/g, '<br>');
+        
+        // Очищаем кнопки
+        buttonsElement.innerHTML = '';
+        
+        // Добавляем кнопки
+        buttons.forEach(button => {
+            const btn = document.createElement('button');
+            btn.className = `message-btn ${button.class || ''}`;
+            btn.textContent = button.text;
+            btn.onclick = () => {
+                if (button.action) button.action();
+                this.hideMessage();
+                playSound();
+            };
+            buttonsElement.appendChild(btn);
+        });
+        
+        // Показываем попап
+        popup.classList.add('active');
+    },
+    
+    // Скрыть сообщение
+    hideMessage() {
+        const popup = document.getElementById('message-popup');
+        if (popup) {
+            popup.classList.remove('active');
+        }
+    },
+    
+    // Показать окно подтверждения
+    showConfirm(title, content, onConfirm, onCancel = null) {
+        this.showMessage(title, content, [
+            {
+                text: 'Отмена',
+                class: 'secondary',
+                action: () => {
+                    if (onCancel) onCancel();
+                }
+            },
+            {
+                text: 'Подтвердить',
+                class: 'primary',
+                action: onConfirm
+            }
+        ]);
+    },
+    
+    // Показать окно информации (без кнопок, только крестик)
+    showInfo(title, content) {
+        this.showMessage(title, content, []); // Пустой массив кнопок - только крестик
+    }
+};
+
 // ==================== ОСНОВНОЙ КОД МЕНЮ ====================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -436,7 +504,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainMenu = document.getElementById('main-menu');
     const ageCheck = document.getElementById('age-check');
     const musicPopup = document.getElementById('music-popup');
-    const settingsPopup = document.getElementById('settings-popup');
+    const messagePopup = document.getElementById('message-popup');
     
     // Кнопки
     const ageYes = document.getElementById('age-yes');
@@ -524,9 +592,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        settingsPopup.addEventListener('click', function(e) {
+        messagePopup.addEventListener('click', function(e) {
             if (e.target === this) {
-                closePopup(settingsPopup);
+                PopupSystem.hideMessage();
+                playSound();
             }
         });
         
@@ -555,6 +624,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const volumeSlider = document.getElementById('music-volume');
         const autoPlayCheck = document.getElementById('auto-play');
         const shuffleCheck = document.getElementById('shuffle-mode');
+        const musicClose = document.getElementById('music-close');
         
         if (btnPlayPause) {
             btnPlayPause.addEventListener('click', function() {
@@ -596,6 +666,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 playSound();
             });
         }
+        
+        if (musicClose) {
+            musicClose.addEventListener('click', function() {
+                closePopup(musicPopup);
+                playSound();
+            });
+        }
     }
     
     function confirmAge() {
@@ -610,28 +687,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
         switch(action) {
             case 'new':
-                startNewGame();
+                showNewGameInfo();
                 break;
             case 'continue':
-                if (!btnContinue.disabled) continueGame();
+                if (!btnContinue.disabled) showContinueInfo();
                 break;
             case 'load':
-                loadGame();
+                showLoadInfo();
                 break;
             case 'gallery':
-                showGallery();
+                showGalleryInfo();
                 break;
             case 'settings':
-                showSettings();
+                showSettingsInfo();
                 break;
             case 'music':
                 showMusicPopup();
                 break;
             case 'dossier':
-                showDossier();
+                showDossierInfo();
                 break;
             case 'credits':
-                showCredits();
+                showCreditsInfo(); // Обновлено - без кнопок
                 break;
         }
     }
@@ -642,44 +719,87 @@ document.addEventListener('DOMContentLoaded', function() {
         MusicSystem.updateTracksList();
     }
     
-    function showSettings() {
-        settingsPopup.classList.add('active');
-    }
-    
     function closePopup(popupElement) {
         playSound();
         popupElement.classList.remove('active');
     }
     
-    function startNewGame() {
-        alert('НОВОЕ ДЕЛО\n\nФункция в разработке. В следующем обновлении:\n• Выбор персонажа детектива\n• Первое расследование\n• Система улик и подозреваемых');
+    function showNewGameInfo() {
+        playSound();
+        // Переходим на страницу выбора персонажа
+        window.location.href = 'character_selection.html';
     }
     
-    function continueGame() {
-        alert('ПРОДОЛЖИТЬ РАССЛЕДОВАНИЕ\n\nЗагрузка последнего сохранения...');
+    function showContinueInfo() {
+        PopupSystem.showInfo( // Используем showInfo вместо showMessage
+            'ПРОДОЛЖИТЬ РАССЛЕДОВАНИЕ',
+            'Загрузка последнего сохранения...<br><br>' +
+            'Функция будет доступна после первого сохранения игры.'
+        );
     }
     
-    function loadGame() {
-        alert('ЗАГРУЗИТЬ ДЕЛО\n\nМеню загрузки сохранений будет в следующем обновлении.');
+    function showLoadInfo() {
+        PopupSystem.showInfo( // Используем showInfo вместо showMessage
+            'ЗАГРУЗИТЬ ДЕЛО',
+            'Меню загрузки сохранений будет в следующем обновлении.<br><br>' +
+            'Вы сможете выбирать из нескольких точек сохранения.'
+        );
     }
     
-    function showGallery() {
-        alert('АРХИВ ДЕЛА\n\nЗдесь будут найденные улики и материалы расследования.');
+    function showGalleryInfo() {
+        PopupSystem.showInfo( // Используем showInfo вместо showMessage
+            'АРХИВ ДЕЛА',
+            'Здесь будут найденные улики и материалы расследования.<br><br>' +
+            '• Фотографии мест преступления<br>' +
+            '• Записи показаний<br>' +
+            '• Личные вещи подозреваемых'
+        );
     }
     
-    function showDossier() {
-        alert('ДОСЬЕ\n\nДосье подозреваемых и собранные улики будут доступны здесь.');
+    function showSettingsInfo() {
+        PopupSystem.showInfo( // Используем showInfo вместо showMessage
+            'НАСТРОЙКИ ИГРЫ',
+            'Общие настройки будут добавлены в следующем обновлении.<br><br>' +
+            'Планируемые настройки:<br>' +
+            '• Язык интерфейса<br>' +
+            '• Скорость текста<br>' +
+            '• Настройки графики<br>' +
+            '• Уровень контента'
+        );
     }
     
-    function showCredits() {
-        alert('АВТОРЫ\n\nВедущий разработчик: AvoKadka\nПомощники: AI друзья\n\nСпециальная благодарность:\n• Сообществу разработчиков\n• Тестерам проекта\n• Всем, кто верит в детективные истории');
+    function showDossierInfo() {
+        PopupSystem.showInfo( // Используем showInfo вместо showMessage
+            'ДОСЬЕ',
+            'Досье подозреваемых и собранные улики будут доступны здесь.<br><br>' +
+            '• Подробные досье персонажей<br>' +
+            '• Карта связей между подозреваемыми<br>' +
+            '• Хронология событий'
+        );
+    }
+    
+    function showCreditsInfo() {
+        PopupSystem.showInfo( // Обновлено - используется showInfo (без кнопок)
+            'АВТОРЫ',
+            '<strong>Ведущий разработчик:</strong> AvoKadka<br>' +
+            '<strong>Помощники:</strong> AI друзья'
+            // Убрали "Специальную благодарность"
+        );
     }
     
     function exitGame() {
-        playSound();
-        if (confirm('Вы уверены, что хотите выйти из игры?')) {
-            alert('Расследование приостановлено. Возвращайтесь!');
-        }
+        PopupSystem.showConfirm(
+            'ВЫХОД ИЗ ИГРЫ',
+            'Вы уверены, что хотите выйти из игры?<br><br>' +
+            'Текущий прогресс будет сохранён автоматически.',
+            () => {
+                PopupSystem.showInfo( // Используем showInfo вместо showMessage
+                    'ДО СВИДАНИЯ!',
+                    'Расследование приостановлено.<br><br>' +
+                    'Возвращайтесь, когда будете готовы продолжить!'
+                );
+            }
+        );
     }
     
     function checkSaves() {
@@ -715,14 +835,14 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'Escape':
                 if (musicPopup.classList.contains('active')) {
                     closePopup(musicPopup);
-                } else if (settingsPopup.classList.contains('active')) {
-                    closePopup(settingsPopup);
+                } else if (messagePopup.classList.contains('active')) {
+                    PopupSystem.hideMessage();
                 }
                 break;
             case '1':
             case 'Enter':
                 if (mainMenu.classList.contains('active')) {
-                    startNewGame();
+                    showNewGameInfo();
                 }
                 break;
             case 'm':
@@ -823,24 +943,53 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Функция для сброса проверки возраста
     window.resetAgeCheck = function() {
-        localStorage.removeItem('detectiveAgeVerified');
-        localStorage.removeItem('ageVerifyTime');
-        localStorage.removeItem('musicVolume');
-        localStorage.removeItem('musicCurrentTrack');
-        localStorage.removeItem('musicPlaying');
-        localStorage.removeItem('musicAutoPlay');
-        localStorage.removeItem('musicShuffle');
-        localStorage.removeItem('musicFirstPlay');
-        alert('✓ Все настройки сброшены!\nСтраница перезагрузится.');
-        location.reload();
+        PopupSystem.showConfirm(
+            'СБРОС НАСТРОЕК',
+            'Вы уверены, что хотите сбросить все настройки?<br><br>' +
+            'Это удалит:<br>' +
+            '• Подтверждение возраста<br>' +
+            '• Настройки музыки<br>' +
+            '• Все сохранения игры',
+            () => {
+                localStorage.removeItem('detectiveAgeVerified');
+                localStorage.removeItem('ageVerifyTime');
+                localStorage.removeItem('musicVolume');
+                localStorage.removeItem('musicCurrentTrack');
+                localStorage.removeItem('musicPlaying');
+                localStorage.removeItem('musicAutoPlay');
+                localStorage.removeItem('musicShuffle');
+                localStorage.removeItem('musicFirstPlay');
+                
+                PopupSystem.showInfo( // Используем showInfo вместо showMessage
+                    'ГОТОВО!',
+                    'Все настройки сброшены.<br><br>' +
+                    'Страница перезагрузится через 2 секунды...'
+                );
+                
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            }
+        );
     };
     
     // Функция для сброса музыкальных настроек
     window.resetMusicSettings = function() {
-        MusicSystem.resetPlayback();
-        alert('✓ Музыкальные настройки сброшены!\nПри следующем запуске начнётся с Трека 1.');
-        MusicSystem.updateUI();
-        MusicSystem.updateTracksList();
+        PopupSystem.showConfirm(
+            'СБРОС МУЗЫКАЛЬНЫХ НАСТРОЕК',
+            'Сбросить настройки музыки к начальным?<br><br>' +
+            'При следующем запуске начнётся с Трека 1.',
+            () => {
+                MusicSystem.resetPlayback();
+                PopupSystem.showInfo( // Используем showInfo вместо showMessage
+                    'ГОТОВО!',
+                    'Музыкальные настройки сброшены.<br><br>' +
+                    'При следующем запуске музыка начнётся с Трека 1.'
+                );
+                MusicSystem.updateUI();
+                MusicSystem.updateTracksList();
+            }
+        );
     };
     
     // Функция для отладки музыки
@@ -861,5 +1010,15 @@ document.addEventListener('DOMContentLoaded', function() {
             currentTime: bgMusic?.currentTime,
             duration: bgMusic?.duration
         });
+        
+        PopupSystem.showInfo( // Используем showInfo вместо showMessage
+            'ОТЛАДКА МУЗЫКИ',
+            `Треков: ${MusicSystem.tracks.length}<br>` +
+            `Текущий: ${MusicSystem.currentTrack + 1}. ${MusicSystem.tracks[MusicSystem.currentTrack]?.name}<br>` +
+            `Играет: ${MusicSystem.isPlaying ? 'Да' : 'Нет'}<br>` +
+            `Громкость: ${Math.round(MusicSystem.volume * 100)}%<br>` +
+            `Автовоспроизведение: ${MusicSystem.autoPlay ? 'Вкл' : 'Выкл'}<br>` +
+            `Случайный порядок: ${MusicSystem.shuffle ? 'Вкл' : 'Выкл'}`
+        );
     };
 });

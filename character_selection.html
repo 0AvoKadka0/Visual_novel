@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор персонажа | Тени Полуночи</title>
+    <link rel="stylesheet" href="css/character_selection.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Фон с эффектом дождя -->
+    <div class="selection-background">
+        <canvas id="rain-canvas"></canvas>
+        <div class="bg-overlay"></div>
+    </div>
+    
+    <!-- Контейнер выбора персонажа -->
+    <div class="selection-container">
+        <!-- Заголовок -->
+        <div class="selection-header">
+            <h1 class="selection-title">ВЫБОР ДЕТЕКТИВА</h1>
+            <p class="selection-subtitle">Чей взгляд будет вашим в этом расследовании?</p>
+        </div>
+        
+        <!-- Сетка персонажей -->
+        <div class="characters-grid">
+            <!-- Алексей Волков -->
+            <div class="character-card" data-character="male">
+                <!-- Верхняя часть: изображение -->
+                <div class="character-image-container">
+                    <img src="assets/characters/male_detective.png" 
+                         alt="Алексей Волков" 
+                         class="character-portrait"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Алексей Волков</span>
+                    </div>
+                </div>
+                
+                <!-- Средняя часть: информация -->
+                <div class="character-info">
+                    <!-- Имя -->
+                    <div class="character-name-section">
+                        <h3 class="character-name">АЛЕКСЕЙ ВОЛКОВ</h3>
+                        <div class="character-traits">
+                            <span class="trait">Хладнокровие</span>
+                            <span class="trait">Интуиция</span>
+                            <span class="trait">Аналитик</span>
+                            <span class="trait">Тёмное прошлое</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Основные атрибуты -->
+                    <div class="character-attributes">
+                        <div class="attribute-item">
+                            <span class="attribute-label">ВОЗРАСТ</span>
+                            <span class="attribute-value">28 лет</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-label">РОСТ</span>
+                            <span class="attribute-value">185 см</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-label">ПРОФЕССИЯ</span>
+                            <span class="attribute-value">Детектив</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Предпочтения -->
+                    <div class="character-preferences">
+                        <div class="preference-section">
+                            <h4 class="preference-title like-title">
+                                <i class="fas fa-heart"></i> ЛЮБИТ
+                            </h4>
+                            <div class="preference-tags">
+                                <span class="preference-tag like">Курить</span>
+                                <span class="preference-tag like">Кофе</span>
+                                <span class="preference-tag like">Чёрный цвет</span>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-section">
+                            <h4 class="preference-title dislike-title">
+                                <i class="fas fa-skull-crossbones"></i> НЕНАВИДИТ
+                            </h4>
+                            <div class="preference-tags">
+                                <span class="preference-tag dislike">Ложь</span>
+                                <span class="preference-tag dislike">Людей</span>
+                                <span class="preference-tag dislike">Опасность</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кнопка удалена - теперь выбор по клику на всю карточку -->
+            </div>
+            
+            <!-- Вероника Смирнова -->
+            <div class="character-card" data-character="female">
+                <!-- Верхняя часть: изображение -->
+                <div class="character-image-container">
+                    <img src="assets/characters/female_detective.png" 
+                         alt="Вероника Смирнова" 
+                         class="character-portrait"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Вероника Смирнова</span>
+                    </div>
+                </div>
+                
+                <!-- Средняя часть: информация -->
+                <div class="character-info">
+                    <!-- Имя -->
+                    <div class="character-name-section">
+                        <h3 class="character-name">ВЕРОНИКА СМИРНОВА</h3>
+                        <div class="character-traits">
+                            <span class="trait">Харизма</span>
+                            <span class="trait">Психология</span>
+                            <span class="trait">Интуиция</span>
+                            <span class="trait">Загадочность</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Основные атрибуты -->
+                    <div class="character-attributes">
+                        <div class="attribute-item">
+                            <span class="attribute-label">ВОЗРАСТ</span>
+                            <span class="attribute-value">26 лет</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-label">РОСТ</span>
+                            <span class="attribute-value">170 см</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-label">ПРОФЕССИЯ</span>
+                            <span class="attribute-value">Детектив</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Предпочтения -->
+                    <div class="character-preferences">
+                        <div class="preference-section">
+                            <h4 class="preference-title like-title">
+                                <i class="fas fa-heart"></i> ЛЮБИТ
+                            </h4>
+                            <div class="preference-tags">
+                                <span class="preference-tag like">Гитару</span>
+                                <span class="preference-tag like">Свитера</span>
+                                <span class="preference-tag like">Кофе</span>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-section">
+                            <h4 class="preference-title dislike-title">
+                                <i class="fas fa-skull-crossbones"></i> НЕНАВИДИТ
+                            </h4>
+                            <div class="preference-tags">
+                                <span class="preference-tag dislike">Морепродукты</span>
+                                <span class="preference-tag dislike">Ложь</span>
+                                <span class="preference-tag dislike">Опасность</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кнопка удалена - теперь выбор по клику на всю карточку -->
+            </div>
+        </div>
+        
+        <!-- Подсказка -->
+        <div class="selection-hint">
+            <p><i class="fas fa-info-circle"></i> Выбор повлияет на диалоги, отношения и доступные сюжетные ветки</p>
+            <p class="hint-sub"><i class="fas fa-exclamation-triangle"></i> Нажмите на карточку персонажа, чтобы выбрать его</p>
+        </div>
+        
+        <!-- Кнопка возврата -->
+        <div class="back-container">
+            <button class="back-btn" id="btn-back">
+                <i class="fas fa-arrow-left"></i> ВЕРНУТЬСЯ В МЕНЮ
+            </button>
+        </div>
+    </div>
+    
+    <!-- Всплывающее окно подтверждения -->
+    <div id="confirm-popup" class="popup">
+        <div class="popup-content confirm-popup">
+            <div class="popup-header">
+                <h3><i class="fas fa-exclamation-circle"></i> ПОДТВЕРЖДЕНИЕ ВЫБОРА</h3>
+                <button class="popup-close" id="confirm-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="popup-body">
+                <div class="confirm-content">
+                    <p>Вы выбрали детектива:</p>
+                    <h2 id="selected-character-name">ИМЯ ПЕРСОНАЖА</h2>
+                    <div class="confirm-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Это решение нельзя будет изменить позже. Все сцены и диалоги будут адаптированы под вашего персонажа.</p>
+                    </div>
+                </div>
+                <div class="confirm-buttons">
+                    <button class="confirm-btn btn-cancel" id="btn-cancel">Отмена</button>
+                    <button class="confirm-btn btn-confirm" id="btn-confirm">Подтвердить выбор</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Аудио элементы -->
+    <audio id="click-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script src="js/character_selection.js"></script>
+</body>
+</html>

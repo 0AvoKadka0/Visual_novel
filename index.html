@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>[Название придумывается] | Детективная новелла 18+</title>
     <link rel="stylesheet" href="css/main_menu.css">
+    <link rel="stylesheet" href="css/character_selection.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -146,7 +147,7 @@
             <div class="popup-content popup-music">
                 <div class="popup-header">
                     <h3><i class="fas fa-music"></i> НАСТРОЙКИ МУЗЫКИ</h3>
-                    <button class="popup-close"><i class="fas fa-times"></i></button>
+                    <button class="popup-close" id="music-close"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="popup-body">
                     <div class="music-controls">
@@ -195,7 +196,7 @@
                                 <label for="auto-play">Автовоспроизведение при запуске</label>
                             </div>
                             <div class="setting-item">
-                                <input type="checkbox" id="shuffle-mode">
+                                <input type="checkbox" id="shuffle-mode" checked>
                                 <label for="shuffle-mode">Случайный порядок треков</label>
                             </div>
                         </div>
@@ -204,15 +205,20 @@
             </div>
         </div>
         
-        <!-- Всплывающее окно общих настроек -->
-        <div id="settings-popup" class="popup">
-            <div class="popup-content">
+        <!-- Универсальное всплывающее окно для сообщений -->
+        <div id="message-popup" class="popup">
+            <div class="popup-content popup-message">
                 <div class="popup-header">
-                    <h3><i class="fas fa-cog"></i> НАСТРОЙКИ ИГРЫ</h3>
-                    <button class="popup-close"><i class="fas fa-times"></i></button>
+                    <h3 id="message-title">Сообщение</h3>
+                    <button class="popup-close" id="message-close"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="popup-body">
-                    <p>Общие настройки будут добавлены в следующем обновлении</p>
+                    <div class="message-content" id="message-content">
+                        <!-- Содержимое сообщения -->
+                    </div>
+                    <div class="message-buttons" id="message-buttons">
+                        <!-- Кнопки будут добавлены через JS -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -235,5 +241,6 @@
     <!-- Подключаем скрипты -->
     <script src="js/main_menu.js"></script>
     <script src="js/age_check.js"></script>
+    <script src="js/character_selection.js"></script>
 </body>
 </html>
